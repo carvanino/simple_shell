@@ -12,4 +12,11 @@
 
 extern char **environ;
 
+/* String Functions */
+char *_strdup(char *str);
+
+
+/* Costumized Functions */
+char **make_args(char *str);
+
 #endif

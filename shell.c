@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <stdio.h>
 
 /**
  * main - starts the shell prgram\
@@ -9,28 +10,33 @@
 
 int main (void)
 {
-	char **argv;
+	char **argv, *str;
 	int status;
 	size_t i = 1024;
 	pid_t pid;
-	int prompt;
+	int prompt, j = 0;
 
 	argv = malloc(sizeof(char *) * 2);
 	argv[1] = NULL;
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
-		prompt = getline(argv, &i, stdin);
+		prompt = getline(&str, &i, stdin);
 		if (prompt == -1 || prompt == EOF)
 		{
 			perror("GETLINE ERROR");
 			break;
 		}
-		argv[0] = strtok(argv[0], " \n");
+		argv = make_args(str);
 		/*if (argv[0][0] == '\n')
 		{
 			perror("New line");
 		}*/
+		while (argv && argv[j])
+		{
+			printf("%s\n", argv[j]);
+			j++;
+		}
 
 		pid = fork();
 		if (pid == -1)
