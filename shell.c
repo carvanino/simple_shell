@@ -13,20 +13,24 @@ int main (void)
 	int status;
 	size_t i = 1024;
 	pid_t pid;
+	int prompt;
 
 	argv = malloc(sizeof(char *) * 2);
 	argv[1] = NULL;
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
-		if (getline(&argv[0], &i, stdin) == -1)
+		prompt = getline(argv, &i, stdin);
+		if (prompt == -1 || prompt == EOF)
 		{
 			perror("GETLINE ERROR");
-			continue;
+			break;
 		}
-		argv[0] = strtok(argv[0], "\n");
-		if (argv[0][0] == '\n')
-			continue;
+		argv[0] = strtok(argv[0], " \n");
+		/*if (argv[0][0] == '\n')
+		{
+			perror("New line");
+		}*/
 
 		pid = fork();
 		if (pid == -1)
