@@ -12,4 +12,8 @@
 
 extern char **environ;
 
-#endif
+
+int _putchar(char *c);
+char *find_path(char **argv);
+
+#endif /* SHELL_H */
