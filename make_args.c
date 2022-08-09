@@ -30,16 +30,17 @@ char **make_args(char *str)
 
 		if (splitted)
 		{
-			str = strtok(str, "\n");
-			splitted[0] = strtok(str, " ");
+			splitted[0] = strtok(str, " \n");
 			while (len > i)
 			{
-				splitted[i] = strtok(NULL, " ");
+				splitted[i] = strtok(NULL, " \n");
 				i++;
 			}
 			splitted[i] = NULL;
+			printf("%p\n", (void *)splitted);
 			return (splitted);
 		}
 	}
+	printf("NULL\n");
 	return (NULL);
 }
