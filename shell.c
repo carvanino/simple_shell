@@ -10,56 +10,56 @@
 
 int main(void)
 {
-	char **argv, *str, *fpaTh;
+	char **argv, *str;
 	int status;
-	size_t i = 1024;
+	size_t i = 0;
 	pid_t pid;
-	int prompt, j = 0;
+	/*int prompt;*/
 
-	argv = malloc(sizeof(char *) * 2);
-	argv[1] = NULL;
 	while (1)
 	{
 		write(STDOUT_FILENO, "$ ", 2);
-		prompt = getline(&str, &i, stdin);
-		if (prompt == -1 || prompt == EOF)
+		if (getline(&str, &i, stdin) != -1)
 		{
-			perror("GETLINE ERROR");
-			break;
-		}
-		printf("Here\n");
-		argv = make_args(str);
-		/*if (argv[0][0] == '\n')
-		{
-			perror("New line");
-		}*/
-		while (argv && argv[j])
-		{
-			printf("%s\n", argv[j]);
-			j++;
-		}
-		printf("Here\n");
-		fpaTh = malloc(sizeof(char) * 45);
-		fpaTh = find_path(str);
-		_strcpy(argv[0], fpaTh);
-
-		pid = fork();
-		if (pid == -1)
-		{
-			perror("FORK ERROR");
-			return (1);
-		}
-		if (pid == 0)
-		{
-			if (execve(argv[0], argv, environ) == -1)
+			if (str[0] != '\n')
 			{
-				perror("EXECVE ERROR");
-				return (2);
+				printf("Here\n");
+				argv = make_args(str);
+
+
+				printf("Here2");
+				argv[0] = find_path(argv[0]);
+				pid = fork();
+				if (pid == -1)
+				{
+					perror("FORK ERROR");
+					return (1);
+				}
+				if (pid == 0)
+				{
+					if (execve(argv[0], argv, environ) == -1)
+					{
+						perror("EXECVE ERROR");
+						free_args(argv);
+						return (2);
+					}
+					free_args(argv);
+					return (0);
+				}
+				else
+					wait(&status);
+				free_args(argv);
 			}
-			return (0);
+			else
+			{
+				/*free(str);*/
+			}
 		}
 		else
-			wait(&status);
+		{
+			free(str);
+			exit(9);
+		}
 	}
 	return (0);
 }

@@ -24,5 +24,6 @@ int n_toks(char *str, char *delim);
 /* Costumized Functions */
 char **make_args(char *str);
 char *find_path(char *argv);
+void free_args(char **);
 
 #endif /* SHELL_H */
