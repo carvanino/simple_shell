@@ -99,7 +99,7 @@ char **check_path(char **args)
 		free(filename);
 	}
 	free(path);
-	return (args);
+	return (NULL);
 
 }
 

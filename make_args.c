@@ -40,10 +40,7 @@ char **make_args(char *str)
 			splitted[i] = NULL;
 			i = 0;
 			while (splitted && splitted[i])
-			{
-				printf("%s\n", splitted[i]);
 				i++;
-			}
 			return (splitted);
 		}
 	}
