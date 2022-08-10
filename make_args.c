@@ -10,8 +10,8 @@
 
 char **make_args(char *str)
 {
-	char **splitted, *strcopy = NULL;
-	int len = 0, i = 1;
+	char **splitted, *strcopy = NULL, *pos = NULL, *tok;
+	int len = 0, i = 0;
 
 	if (!str)
 		return (NULL);
@@ -30,14 +30,20 @@ char **make_args(char *str)
 
 		if (splitted)
 		{
-			splitted[0] = strtok(str, " \n");
-			while (len > i)
+			tok = strtok_r(str, " \n", &pos);
+			while (tok)
 			{
-				splitted[i] = strtok(NULL, " \n");
+				splitted[i] = tok;
+				tok = strtok_r(NULL, " \n", &pos);
 				i++;
 			}
 			splitted[i] = NULL;
-			printf("%p\n", (void *)splitted);
+			i = 0;
+			while (splitted && splitted[i])
+			{
+				printf("%s\n", splitted[i]);
+				i++;
+			}
 			return (splitted);
 		}
 	}

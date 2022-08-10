@@ -58,3 +58,74 @@ char *find_path(char *argv)
 	}
 	return (0);
 }
+
+
+/**
+ * check_path - checks if the command exists in the path
+ *
+ * @args: pointer to strings
+ *
+ * Return: pointer to string
+ */
+
+char **check_path(char **args)
+{
+	char *filename, *delim, *path, *dir;
+	struct stat st;
+
+	delim = ":";
+	path = _strdup(getenv("PATH"));
+	if (!path)
+		exit(5);
+	if (stat(args[0], &st) == 0)
+	{
+		free(path);
+		return (args);
+	}
+	dir = strtok(path, delim);
+	while (dir != NULL)
+	{
+		filename = path_concat(dir, args[0]);
+		if (stat(filename, &st) == 0)
+		{
+			args[0] = filename;
+			free(path);
+			return (args);
+		}
+		dir = strtok(NULL, delim);
+		free(filename);
+	}
+	free(path);
+	return (args);
+
+}
+
+char *path_concat(char *s1, char *s2)
+{
+	char *s, *p;
+	int len1, len2;
+
+	len1 = len2 = 0;
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+
+	s = p = malloc((len1 + len2 + 2) * sizeof(char));
+	while (*s1)
+	{
+		*s = *s1;
+		s++;
+		s1++;
+	}
+	*s = '/';
+	s++;
+	while (*s2)
+	{
+		*s = *s2;
+		s++;
+		s2++;
+	}
+	*s = '\0';
+	return(p);
+
+
+}
