@@ -44,6 +44,5 @@ char **make_args(char *str)
 			return (splitted);
 		}
 	}
-	printf("NULL\n");
 	return (NULL);
 }
