@@ -29,7 +29,6 @@ int main(void)
 					if (argv != NULL)
 					{
 						execute(argv);
-						free_args(argv);
 					}
 					else
 					{
@@ -46,7 +45,7 @@ int main(void)
 		else
 		{
 			free(str);
-			free_args(argv);
+			/*free_args(argv);*/
 			exit(9);
 		}
 	}
