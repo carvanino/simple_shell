@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * n_tok - gets the number of token from a string
+ * n_toks - gets the number of token from a string
  *
- * @string: string ti be tokenized or parsed
+ * @str: string ti be tokenized or parsed
  * @delim: delimiter
  *
  * Return: Number of tokens

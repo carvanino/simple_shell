@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * _env - gets environmental variable
+ * shell_env - gets environmental variable
  *
- * @environ: environmental variable
+ * @args: environmental variable
  *
  * Return: 0 Always
  */

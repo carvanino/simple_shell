@@ -20,13 +20,9 @@ char *find_path(char *argv)
 	if (argv[0] != '/')
 	{
 		env_var = getenv("PATH");
-		/* Have a copy of env_var */
-		str_cpy = malloc(sizeof(char) * strlen(env_var));
+		str_cpy = malloc(sizeof(char) * strlen(env_var));/* Have a copy of env_var */
 		_strcpy(str_cpy, env_var);
-		/* Get number of tokens */
-		n_token = n_toks(env_var, ":");
-		/*printf("%d\n", n_token);*/
-
+		n_token = n_toks(env_var, ":");  /* Get number of tokens */
 		/* An array to store token */
 		tokens = malloc(sizeof(char *) * n_token);
 		token = strtok(str_cpy, ":");
@@ -38,7 +34,6 @@ char *find_path(char *argv)
 			token = strtok(NULL, ":");
 		}
 		tokens[i] = "\0";
-		/*printf("Here\n");*/
 		i = 0;
 		/* Move through thw array of tokens and add the a "/" with the argument*/
 		 /* passed */
@@ -46,18 +41,14 @@ char *find_path(char *argv)
 		{
 			_strcat(tokens[i], "/");
 			_strcat(tokens[i], argv);
-
 			/* Check for each if the argument is files im the directory */
 			if (stat(tokens[i], &st) == 0)
 			{
-				printf("%s\n", tokens[i]);
 				argv = _strdup(tokens[i]);
-				printf("%s\n", argv);
 				return (argv); /* tokens[i] FOUND */
 			}
 			i++;
 		}
-		/*return (argv);*/
 	}
 	return (argv);
 }
@@ -103,6 +94,15 @@ char **check_path(char **args)
 
 }
 
+/**
+ * path_concat - concatenate s1 and s2 adding the "/" between
+ *
+ * @s1: desrination
+ * @s2: source
+ *
+ * Return: pointer to concatenated atring
+ */
+
 char *path_concat(char *s1, char *s2)
 {
 	char *s, *p;
@@ -128,7 +128,7 @@ char *path_concat(char *s1, char *s2)
 		s2++;
 	}
 	*s = '\0';
-	return(p);
+	return (p);
 
 
 }

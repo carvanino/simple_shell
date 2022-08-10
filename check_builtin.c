@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * check_builtins - check a builtin command is entered
+ * check_builtin - check a builtin command is entered
  *
  * @args: pointer to the command entered
  *
@@ -23,4 +23,4 @@ int check_builtin(char **args)
 			return (commands[i].f(args));
 	}
 	return (-1);
-}	
+}
