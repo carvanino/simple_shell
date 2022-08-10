@@ -20,6 +20,8 @@ char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int n_toks(char *str, char *delim);
 int _strlen(char *);
+void _puts(char *);
+int _putchar(char);
 
 
 /* Costumized Functions */

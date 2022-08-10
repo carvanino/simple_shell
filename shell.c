@@ -26,23 +26,32 @@ int main(void)
 				argv = make_args(str);
 
 				argv = check_path(argv);
-				pid = fork();
-				if (pid == -1)
+				if (argv != NULL)
 				{
-					perror("FORK ERROR");
-					return (1);
-				}
-				if (pid == 0)
-				{
-					if (execve(argv[0], argv, environ) == -1)
+					pid = fork();
+					if (pid == -1)
 					{
-						perror("EXECVE ERROR");
-						return (2);
+						perror("FORK ERROR");
+						return (1);
 					}
-					return (0);
+					if (pid == 0)
+					{
+						if (execve(argv[0], argv, environ) == -1)
+						{
+							perror("EXECVE ERROR");
+							return (2);
+						}
+						return (0);
+					}
+					else
+						wait(&status);
 				}
 				else
-					wait(&status);
+				{
+					_puts("shell: ");
+					_puts(str);
+					_puts(": command not found\n");
+				}
 			}
 			{
 				/*free(str);*/
