@@ -57,6 +57,7 @@ void free_args(char **);
 char **check_path(char **);
 char *path_concat(char *, char *);
 int check_builtin(char **);
+int execute(char **argv);
 
 /* Built ins */
 void _env(char **environ);

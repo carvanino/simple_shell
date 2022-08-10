@@ -4,7 +4,7 @@
  * make_args - splits string into tokens an stores the addresses in any array
  *
  * @str: string
- * 
+ *
  * Return: Pointer to array of strings
  */
 
