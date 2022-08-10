@@ -31,11 +31,7 @@ typedef struct builtin_op
 
 /* Builtin Command Functions */
 int shell_exit(char **);
-
-typedef struct builtins {
-	char *command;
-	void (*func)();
-} builtin;
+int shell_env(char **);
 
 
 /* String Functions */

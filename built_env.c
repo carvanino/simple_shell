@@ -4,9 +4,11 @@
  * _env - gets environmental variable
  *
  * @environ: environmental variable
+ *
+ * Return: 0 Always
  */
 
-void _env(char **environ)
+int shell_env(char **args __attribute__((unused)))
 {
 	unsigned int i = 0;
 
@@ -16,4 +18,5 @@ void _env(char **environ)
 		write(1, "\n", 1);
 		i++;
 	}
+	return (0);
 }

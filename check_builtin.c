@@ -12,11 +12,11 @@ int check_builtin(char **args)
 {
 	builtin commands[] = {
 			{"exit", shell_exit},
+			{"env", shell_env},
 			{NULL, NULL}
 	};
 	int i;
 
-	printf("Here\n");
 	for (i = 0; commands[i].name; i++)
 	{
 		if (_strcmp(commands[i].name, args[0]) == 0)
