@@ -13,6 +13,11 @@
 
 extern char **environ;
 
+typedef struct builtins {
+	char *command;
+	void (*func)();
+} builtin;
+
 
 /* String Functions */
 char *_strdup(char *str);
