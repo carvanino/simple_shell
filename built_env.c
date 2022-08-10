@@ -3,7 +3,7 @@
 /**
  * _env - gets environmental variable
  *
- * @env: environmental variable
+ * @environ: environmental variable
  */
 
 void _env(char **environ)

@@ -36,4 +36,8 @@ void free_args(char **);
 char **check_path(char **);
 char *path_concat(char *, char *);
 
+/* Built ins */
+void _env(char **environ);
+
+
 #endif /* SHELL_H */
