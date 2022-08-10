@@ -14,7 +14,6 @@ int main(void)
 	int status;
 	size_t i = 0;
 	pid_t pid;
-	/*int prompt;*/
 
 	while (1)
 	{
