@@ -23,12 +23,9 @@ int main(void)
 		{
 			if (str[0] != '\n')
 			{
-				printf("Here\n");
 				argv = make_args(str);
 
-
-				printf("Here2");
-				argv[0] = find_path(argv[0]);
+				argv = check_path(argv);
 				pid = fork();
 				if (pid == -1)
 				{
@@ -40,17 +37,13 @@ int main(void)
 					if (execve(argv[0], argv, environ) == -1)
 					{
 						perror("EXECVE ERROR");
-						free_args(argv);
 						return (2);
 					}
-					free_args(argv);
 					return (0);
 				}
 				else
 					wait(&status);
-				free_args(argv);
 			}
-			else
 			{
 				/*free(str);*/
 			}
