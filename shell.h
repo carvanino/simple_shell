@@ -32,6 +32,11 @@ typedef struct builtin_op
 /* Builtin Command Functions */
 int shell_exit(char **);
 
+typedef struct builtins {
+	char *command;
+	void (*func)();
+} builtin;
+
 
 /* String Functions */
 char *_strdup(char *str);
@@ -54,5 +59,9 @@ void free_args(char **);
 char **check_path(char **);
 char *path_concat(char *, char *);
 int check_builtin(char **);
+
+/* Built ins */
+void _env(char **environ);
+
 
 #endif /* SHELL_H */
