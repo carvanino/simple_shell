@@ -51,12 +51,15 @@ char *find_path(char *argv)
 			if (stat(tokens[i], &st) == 0)
 			{
 				printf("%s\n", tokens[i]);
-				return (tokens[i]); /* tokens[i] FOUND */
+				argv = _strdup(tokens[i]);
+				printf("%s\n", argv);
+				return (argv); /* tokens[i] FOUND */
 			}
 			i++;
 		}
+		/*return (argv);*/
 	}
-	return (0);
+	return (argv);
 }
 
 
