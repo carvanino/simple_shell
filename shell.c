@@ -45,11 +45,11 @@ int main(void)
 		else
 		{
 			free(str);
-			/*free_args(argv);*/
+			free_args(argv);
 			exit(9);
 		}
 	}
-	/*free_args(argv);*/
+	free_args(argv);
 	return (0);
 }
 
