@@ -41,6 +41,8 @@ char *_strcpy(char *dest, char *src);
 int n_toks(char *str, char *delim);
 int _strlen(char *);
 int _strcmp(char *, char *);
+char *tokenize(char *, char *);
+
 
 
 /** Print Functions */

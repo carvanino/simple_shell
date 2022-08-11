@@ -10,16 +10,16 @@
 
 char **make_args(char *str)
 {
-	char **splitted, *strcopy = NULL, *pos = NULL, *tok;
+	char **splitted, *strcopy = NULL, *tok;
 	int len = 0, i = 0;
 
 	if (!str)
 		return (NULL);
 	strcopy = _strdup(str);
-	if (strcopy && strtok(strcopy, " "))
+	if (strcopy && tokenize(strcopy, " "))
 	{
 		len++;
-		while (strtok(NULL, " "))
+		while (tokenize(NULL, " "))
 			len++;
 	}
 	free(strcopy);
@@ -30,11 +30,11 @@ char **make_args(char *str)
 
 		if (splitted)
 		{
-			tok = strtok_r(str, " \n", &pos);
+			tok = tokenize(str, " \n");
 			while (tok)
 			{
 				splitted[i] = tok;
-				tok = strtok_r(NULL, " \n", &pos);
+				tok = tokenize(NULL, " \n");
 				i++;
 			}
 			splitted[i] = NULL;
