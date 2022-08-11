@@ -10,7 +10,13 @@
 
 void free_args(char **ptr)
 {
+	int i = 0;
 
-	free(ptr[0]);
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+
 	free(ptr);
 }

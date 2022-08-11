@@ -10,9 +10,7 @@
 int main(void)
 {
 	char **argv, *str;
-	/*int status;*/
 	size_t i = 0;
-	/*int prompt;*/
 
 	while (1)
 	{
@@ -34,17 +32,14 @@ int main(void)
 						_puts("shell: ");
 						_puts(str);
 						_puts(": command not found\n");
+						free(argv);
 					}
 				}
-			}
-			{
-
 			}
 		}
 		else
 		{
 			free(str);
-			/*free_args(argv);*/
 			exit(9);
 		}
 	}
@@ -70,6 +65,7 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("FORK ERROR");
+		free(argv);
 		return (1);
 	}
 	if (pid == 0)
@@ -77,6 +73,7 @@ int execute(char **argv)
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
+			free(argv);
 			return (2);
 		}
 		return (0);
@@ -84,6 +81,7 @@ int execute(char **argv)
 	else
 	{
 		wait(&status);
+		free(argv);
 	}
 	return (-1);
 }
