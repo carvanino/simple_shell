@@ -40,10 +40,7 @@ int main(void)
 		else
 		{
 			free(str);
-<<<<<<< HEAD
 			free_args(argv);
-=======
->>>>>>> 5cc3f6bf37909b6d235324460361c4dc62380bb0
 			exit(9);
 		}
 	}
