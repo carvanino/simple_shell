@@ -20,7 +20,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		get_args();
 		return (0);
 	}
-
+	
 	while (1)
 	{
 		write(1, "$ ", 2);
@@ -54,7 +54,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			exit(9);
 		}
 	}
-	free_args(argv);
+/*	free_args(argv);*/
 	return (0);
 }
 
@@ -102,7 +102,7 @@ void get_args(void)
 {
 	char **argv, *str;
 	size_t i = 0;
-	if (getline(&str, &i, stdin) != -1)
+	while (getline(&str, &i, stdin) != -1)
 	{
 		if (str[0] != '\n')
 		{
@@ -113,7 +113,6 @@ void get_args(void)
 				if (argv != NULL)
 				{
 					execute(argv);
-					_puts("$ ");
 				}
 				else
 				{
@@ -121,15 +120,13 @@ void get_args(void)
 					_puts(str);
 					_puts(": command not found\n");
 					free(argv);
-					_puts("$ ");
 				}
 			}
 		}
 	}
-	else
 	{
 		free(str);
-		exit(9);
+		exit(0);
 	}
 }
 
