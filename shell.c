@@ -20,7 +20,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		get_args();
 		return (0);
 	}
-
+	
 	while (1)
 	{
 		parent = 1;
@@ -54,7 +54,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			exit(9);
 		}
 	}
-	free_args(argv);
+/*	free_args(argv);*/
 	return (0);
 }
 
@@ -113,7 +113,6 @@ void get_args(void)
 				if (argv != NULL)
 				{
 					execute(argv);
-					_puts("$ ");
 				}
 				else
 				{
@@ -121,7 +120,6 @@ void get_args(void)
 					_puts(str);
 					_puts(": command not found\n");
 					free(argv);
-					_puts("$ ");
 				}
 			}
 		}
