@@ -76,7 +76,7 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("FORK ERROR");
-		free(argv);
+		free_args(argv);
 		return (1);
 	}
 	if (pid == 0)
@@ -85,7 +85,7 @@ int execute(char **argv)
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
-			free(argv);
+			free_args(argv);
 			return (2);
 		}
 		return (0);
@@ -93,7 +93,7 @@ int execute(char **argv)
 	else
 	{
 		wait(&status);
-		free(argv);
+		free_args(argv);
 	}
 	return (-1);
 }
@@ -119,7 +119,7 @@ void get_args(void)
 					_puts("shell: ");
 					_puts(str);
 					_puts(": command not found\n");
-					free(argv);
+					free_args(argv);
 				}
 			}
 		}

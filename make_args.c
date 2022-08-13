@@ -38,14 +38,9 @@ char **make_args(char *str)
 				i++;
 			}
 			splitted[i] = NULL;
-			i = 0;
-			while (splitted && splitted[i])
-				i++;
 			return (splitted);
-			free_args(splitted);
 		}
 		free_args(splitted);
 	}
-	free_args(splitted);
 	return (NULL);
 }
