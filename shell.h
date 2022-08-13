@@ -4,6 +4,7 @@
 
 /* Global variable */
 extern char **environ;
+int parent;
 
 /**
  * struct builtin_op - Struct builtin_op
@@ -58,6 +59,8 @@ char **check_path(char **);
 char *path_concat(char *, char *);
 int check_builtin(char **);
 int execute(char **argv);
+void sighandler(int);
+void get_args(void);
 
 /* Built ins */
 void _env(char **environ);

@@ -7,14 +7,24 @@
  */
 
 
-int main(void)
+int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 {
 	char **argv, *str;
 	size_t i = 0;
 
+	signal(SIGINT, sighandler);
+	signal(SIGQUIT, SIG_IGN);
+
+	if (!isatty(STDIN_FILENO))
+	{
+		get_args();
+		return (0);
+	}
+
 	while (1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		parent = 1;
+		_puts("$ ");
 		if (getline(&str, &i, stdin) != -1)
 		{
 			if (str[0] != '\n')
@@ -70,6 +80,7 @@ int execute(char **argv)
 	}
 	if (pid == 0)
 	{
+		parent = 0;
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
@@ -84,4 +95,48 @@ int execute(char **argv)
 		free(argv);
 	}
 	return (-1);
+}
+
+void get_args(void)
+{
+	char **argv, *str;
+	size_t i = 0;
+	if (getline(&str, &i, stdin) != -1)
+	{
+		if (str[0] != '\n')
+		{
+			argv = make_args(str);
+			if (check_builtin(argv) == -1)
+			{
+				argv = check_path(argv);
+				if (argv != NULL)
+				{
+					execute(argv);
+					_puts("$ \n");
+				}
+				else
+				{
+					_puts("shell: ");
+					_puts(str);
+					_puts(": command not found\n");
+					free(argv);
+					_puts("$ \n");
+				}
+			}
+		}
+	}
+	else
+	{
+		free(str);
+		exit(9);
+	}
+}
+
+
+void sighandler(int sig_num)
+{
+	(void)sig_num;
+	if (parent == 1)
+		_puts("\n$ ");
+	signal(SIGINT, sighandler);
 }
