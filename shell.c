@@ -126,7 +126,7 @@ void get_args(void)
 	}
 	{
 		free(str);
-		exit(9);
+		exit(0);
 	}
 }
 
