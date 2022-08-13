@@ -102,7 +102,7 @@ void get_args(void)
 {
 	char **argv, *str;
 	size_t i = 0;
-	if (getline(&str, &i, stdin) != -1)
+	while (getline(&str, &i, stdin) != -1)
 	{
 		if (str[0] != '\n')
 		{
@@ -124,7 +124,6 @@ void get_args(void)
 			}
 		}
 	}
-	else
 	{
 		free(str);
 		exit(9);
