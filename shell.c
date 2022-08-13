@@ -14,7 +14,7 @@ int main(void)
 
 	while (1)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(1, "$ ", 2);
 		if (getline(&str, &i, stdin) != -1)
 		{
 			if (str[0] != '\n')
@@ -40,7 +40,6 @@ int main(void)
 		else
 		{
 			free(str);
-			free_args(argv);
 			exit(9);
 		}
 	}
