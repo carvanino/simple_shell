@@ -113,7 +113,7 @@ void get_args(void)
 				if (argv != NULL)
 				{
 					execute(argv);
-					_puts("$ \n");
+					_puts("$ ");
 				}
 				else
 				{
@@ -121,7 +121,7 @@ void get_args(void)
 					_puts(str);
 					_puts(": command not found\n");
 					free(argv);
-					_puts("$ \n");
+					_puts("$ ");
 				}
 			}
 		}
