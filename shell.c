@@ -50,10 +50,11 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 		else
 		{
 			free(str);
+			free_args(argv);
 			exit(9);
 		}
 	}
-	/*free_args(argv);*/
+	free_args(argv);
 	return (0);
 }
 
