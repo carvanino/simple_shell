@@ -25,7 +25,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 	{
 		write(1, "$ ", 2);
 		parent = 1;
-		_puts("$ ");
+		/*_puts("$ ");*/
 		if (getline(&str, &i, stdin) != -1)
 		{
 			if (str[0] != '\n')
@@ -43,10 +43,11 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						_puts("shell: ");
 						_puts(str);
 						_puts(": command not found\n");
-						free(argv);
+						free(argv); /*change to just free */
 					}
 				}
 			}
+			free(argv); /* New */
 		}
 		else
 		{
@@ -76,7 +77,7 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("FORK ERROR");
-		free_args(argv);
+		/*free_args(argv);*/
 		return (1);
 	}
 	if (pid == 0)
@@ -85,7 +86,7 @@ int execute(char **argv)
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
-			free_args(argv);
+			/*free_args(argv);*/
 			return (2);
 		}
 		return (0);
@@ -93,7 +94,7 @@ int execute(char **argv)
 	else
 	{
 		wait(&status);
-		free_args(argv);
+		/*free_args(argv);*/
 	}
 	return (-1);
 }
@@ -119,10 +120,12 @@ void get_args(void)
 					_puts("shell: ");
 					_puts(str);
 					_puts(": command not found\n");
-					free_args(argv);
+					free(argv);/* changed to just free */
 				}
 			}
+			free_args(argv); /* New //ill need to delete this or change to just free*/
 		}
+		free(argv);/* New //doesn't make a difference, so not needed */
 	}
 	{
 		free(str);

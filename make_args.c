@@ -22,11 +22,12 @@ char **make_args(char *str)
 		while (tokenize(NULL, " "))
 			len++;
 	}
+	len++; /* New edit */
 	free(strcopy);
 
 	if (len > 0)
 	{
-		splitted = malloc(sizeof(char *) * len + 1);
+		splitted = malloc(sizeof(char *) * len);/* removed "+1" here */
 
 		if (splitted)
 		{
