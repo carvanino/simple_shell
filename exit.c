@@ -10,6 +10,6 @@
 
 int shell_exit(char **args __attribute__((unused)))
 {
-	free_args(args);
+	free(args);
 	_exit(0);
 }
