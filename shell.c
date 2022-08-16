@@ -47,9 +47,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						free(argv); /*change to just free_args */
 					}
 				}
-				free(argv);
 			}
-			/*free_args(argv);  *New */
 		}
 		else
 		{
