@@ -10,6 +10,7 @@
 int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 {
 	char **argv, *str = NULL;
+	int check;
 	size_t i = 0;
 
 	signal(SIGINT, sighandler);
@@ -33,8 +34,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 				argv = make_args(str);
 				if (check_builtin(argv) == -1)
 				{
-					argv = check_path(argv);
-					if (argv != NULL)
+					check = check_path(argv);
+					if (check != 1)
 					{
 						execute(argv);
 					}
@@ -43,11 +44,10 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						_puts("shell: ");
 						_puts(str);
 						_puts(": command not found\n");
-						free(argv); /*change to just free */
+						free(argv); /*change to just free_args */
 					}
 				}
 			}
-			free(argv);  /*New */
 		}
 		else
 		{
@@ -89,12 +89,13 @@ int execute(char **argv)
 			free_args(argv); /* Edit */
 			return (2);
 		}
+		free_args(argv);
 		return (0);
 	}
 	else
 	{
 		wait(&status);
-		/*free_args(argv); */
+		free_args(argv);
 	}
 	return (-1);
 }
@@ -110,8 +111,8 @@ void get_args(void)
 			argv = make_args(str);
 			if (check_builtin(argv) == -1)
 			{
-				argv = check_path(argv);
-				if (argv != NULL)
+				int check = check_path(argv);
+				if (check != 0)
 				{
 					execute(argv);
 				}
@@ -120,7 +121,7 @@ void get_args(void)
 					_puts("shell: ");
 					_puts(str);
 					_puts(": command not found\n");
-					free(argv);/* changed to just free */
+					free(argv);/* changed to just free_args */
 				}
 			}
 			free_args(argv); /* New //ill need to delete this or change to just free*/

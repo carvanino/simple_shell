@@ -55,7 +55,7 @@ int _putchar(char);
 char **make_args(char *str);
 char *find_path(char *argv);
 void free_args(char **);
-char **check_path(char **);
+int check_path(char **);
 char *path_concat(char *, char *);
 int check_builtin(char **);
 int execute(char **argv);

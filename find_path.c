@@ -62,7 +62,7 @@ char *find_path(char *argv)
  * Return: pointer to string
  */
 
-char **check_path(char **args)
+int check_path(char **args)
 {
 	char *filename = NULL, *delim, *path = NULL, *dir = NULL;
 	struct stat st;
@@ -74,7 +74,7 @@ char **check_path(char **args)
 	if (stat(args[0], &st) == 0)
 	{
 		free(path);
-		return (args);
+		return (0);
 	}
 	dir = strtok(path, delim);
 	while (dir != NULL)
@@ -84,13 +84,13 @@ char **check_path(char **args)
 		{
 			args[0] = filename;
 			free(path);
-			return (args);
+			return (0);
 		}
 		dir = strtok(NULL, delim);
 		free(filename);
 	}
 	free(path);
-	return (NULL);
+	return (1);
 
 }
 
