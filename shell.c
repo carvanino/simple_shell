@@ -46,8 +46,9 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						free(argv); /*change to just free */
 					}
 				}
+				free(argv);
 			}
-			free(argv);  /*New */
+			/*free_args(argv);  *New */
 		}
 		else
 		{
@@ -77,7 +78,7 @@ int execute(char **argv)
 	if (pid == -1)
 	{
 		perror("FORK ERROR");
-		free_args(argv); /* edit */
+		/*free_args(argv);  edit */
 		return (1);
 	}
 	if (pid == 0)
@@ -86,7 +87,7 @@ int execute(char **argv)
 		if (execve(argv[0], argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
-			free_args(argv); /* Edit */
+			/*free_args(argv);  Edit */
 			return (2);
 		}
 		return (0);
