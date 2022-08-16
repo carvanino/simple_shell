@@ -112,7 +112,7 @@ void get_args(void)
 			if (check_builtin(argv) == -1)
 			{
 				int check = check_path(argv);
-				if (check != 0)
+				if (check != 1)
 				{
 					execute(argv);
 				}
@@ -124,14 +124,10 @@ void get_args(void)
 					free(argv);/* changed to just free_args */
 				}
 			}
-			free_args(argv); /* New //ill need to delete this or change to just free*/
 		}
-		free(argv);/* New //doesn't make a difference, so not needed */
-	}
-	{
 		free(str);
-		exit(0);
 	}
+	exit(0);
 }
 
 
