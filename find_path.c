@@ -64,7 +64,7 @@ char *find_path(char *argv)
 
 char **check_path(char **args)
 {
-	char *filename, *delim, *path, *dir;
+	char *filename = NULL, *delim, *path = NULL, *dir = NULL;
 	struct stat st;
 
 	delim = ":";
