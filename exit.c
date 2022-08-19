@@ -8,7 +8,7 @@
  * Return: 0 if it succeeds and 1 if it fails
  */
 
-int shell_exit(char **args __attribute__((unused)))
+int shell_exit(char **args)
 {
 	free(args);
 	_exit(0);

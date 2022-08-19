@@ -58,7 +58,7 @@ void free_args(char **);
 int check_path(char **);
 char *path_concat(char *, char *);
 int check_builtin(char **);
-int execute(char **argv);
+int execute(char **argv, char *);
 void sighandler(int);
 void get_args(void);
 

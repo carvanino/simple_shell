@@ -9,7 +9,7 @@
 
 int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 {
-	char **argv, *str = NULL;
+	char **argv, *str = NULL, *command;
 	int check;
 	size_t i = 0;
 
@@ -34,10 +34,11 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 				argv = make_args(str);
 				if (check_builtin(argv) == -1)
 				{
-					check = check_path(argv);
+					command = argv[0];
+					check = check_path(&command);
 					if (check != 1)
 					{
-						execute(argv);
+						execute(argv, command);
 					}
 					else
 					{
@@ -68,7 +69,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
  * Return: 0 if Success -1 if Fail
  */
 
-int execute(char **argv)
+int execute(char **argv, char *command)
 {
 	pid_t pid;
 	int status;
@@ -82,28 +83,34 @@ int execute(char **argv)
 	}
 	if (pid == 0)
 	{
+		printf("%s", command);
 		parent = 0;
-		if (execve(argv[0], argv, environ) == -1)
+		if (execve(command, argv, environ) == -1)
 		{
 			perror("EXECVE ERROR");
 			/*free_args(argv);  Edit */
 			return (2);
 		}
-		free_args(argv);
+		if (argv[0] != command)
+			free(command);
+		free(argv);
 		return (0);
 	}
 	else
 	{
 		wait(&status);
-		free_args(argv);
+		if (argv[0] != command)
+			free(command);
+		free(argv);
 	}
 	return (-1);
 }
 
 void get_args(void)
 {
-	char **argv, *str;
+	char **argv, *str, *command;
 	size_t i = 0;
+	int check;
 	while (getline(&str, &i, stdin) != -1)
 	{
 		if (str[0] != '\n')
@@ -111,10 +118,11 @@ void get_args(void)
 			argv = make_args(str);
 			if (check_builtin(argv) == -1)
 			{
-				int check = check_path(argv);
+				command = argv[0];
+				check = check_path(&command);
 				if (check != 1)
 				{
-					execute(argv);
+					execute(argv, command);
 				}
 				else
 				{

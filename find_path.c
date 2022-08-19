@@ -71,7 +71,7 @@ int check_path(char **args)
 	path = _strdup(getenv("PATH"));
 	if (!path)
 		exit(5);
-	if (stat(args[0], &st) == 0)
+	if (stat(*args, &st) == 0)
 	{
 		free(path);
 		return (0);
@@ -79,10 +79,10 @@ int check_path(char **args)
 	dir = strtok(path, delim);
 	while (dir != NULL)
 	{
-		filename = path_concat(dir, args[0]);
+		filename = path_concat(dir, *args);
 		if (stat(filename, &st) == 0)
 		{
-			args[0] = filename;
+			*args = filename;
 			free(path);
 			return (0);
 		}
