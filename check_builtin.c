@@ -8,7 +8,7 @@
  * Return: NULL if there's no match or a function toe execute builtin
  */
 
-int check_builtin(char **args)
+int check_builtin(char **args, char *str)
 {
 	builtin commands[] = {
 			{"exit", shell_exit},
@@ -17,8 +17,10 @@ int check_builtin(char **args)
 	};
 	int i;
 
-	for (i = 0; commands[i].name; i++)
+	for (i = 1; commands[i].name; i++)
 	{
+		if (_strcmp(args[0], "exit") == 0)
+			return (commands[0].f(args, str));
 		if (_strcmp(commands[i].name, args[0]) == 0)
 			return (commands[i].f(args));
 	}

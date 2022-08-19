@@ -32,7 +32,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			if (str[0] != '\n')
 			{
 				argv = make_args(str);
-				if (check_builtin(argv) == -1)
+				if (check_builtin(argv, str) == -1)
 				{
 					command = argv[0];
 					check = check_path(&command);
@@ -116,7 +116,7 @@ void get_args(void)
 		if (str[0] != '\n')
 		{
 			argv = make_args(str);
-			if (check_builtin(argv) == -1)
+			if (check_builtin(argv, str) == -1)
 			{
 				command = argv[0];
 				check = check_path(&command);
@@ -131,6 +131,11 @@ void get_args(void)
 					_puts(": command not found\n");
 					free(argv);/* changed to just free_args */
 				}
+			}
+			else
+			{
+				free(argv);
+				free(str);
 			}
 		}
 	}

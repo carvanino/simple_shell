@@ -15,7 +15,7 @@ int parent;
 typedef struct builtin_op
 {
 	char *name;
-	int (*f)(char **args);
+	int (*f)();
 } builtin;
 
 
@@ -31,7 +31,7 @@ typedef struct builtin_op
 
 
 /* Builtin Command Functions */
-int shell_exit(char **);
+int shell_exit(char **, char *);
 int shell_env(char **);
 
 
@@ -57,7 +57,7 @@ char *find_path(char *argv);
 void free_args(char **);
 int check_path(char **);
 char *path_concat(char *, char *);
-int check_builtin(char **);
+int check_builtin(char **, char *);
 int execute(char **argv, char *);
 void sighandler(int);
 void get_args(void);
