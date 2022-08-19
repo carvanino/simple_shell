@@ -110,7 +110,7 @@ int execute(char **argv, char *command)
 
 void get_args(void)
 {
-	char **argv, *str, *command;
+	char **argv, *str = NULL, *command;
 	size_t i = 0;
 	int check;
 	while (getline(&str, &i, stdin) != -1)
