@@ -140,6 +140,7 @@ void get_args(void)
 			}
 		}
 	}
+	free(str);
 	exit(0);
 }
 
