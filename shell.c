@@ -48,6 +48,8 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						free(argv); /*change to just free_args */
 					}
 				}
+				else
+					free(argv);
 			}
 		}
 		else
@@ -135,7 +137,6 @@ void get_args(void)
 			else
 			{
 				free(argv);
-				free(str);
 			}
 		}
 	}
