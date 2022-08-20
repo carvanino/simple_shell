@@ -118,13 +118,7 @@ void get_args(void)
 		if (str[0] != '\n' && str[0] != ' ')
 		{
 			argv = make_args(str);
-			/*if (argv == NULL)
-			{
-				free(str);
-				continue;
-			}
-			*/
-			if (check_builtin(argv, str) == -1)
+			if (argv != NULL && check_builtin(argv, str) == -1)
 			{
 				command = argv[0];
 				check = check_path(&command);
