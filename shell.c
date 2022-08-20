@@ -115,9 +115,15 @@ void get_args(void)
 	int check;
 	while (getline(&str, &i, stdin) != -1)
 	{
-		if (str[0] != '\n')
+		if (str[0] != '\n' && str[0] != ' ')
 		{
 			argv = make_args(str);
+			/*if (argv == NULL)
+			{
+				free(str);
+				continue;
+			}
+			*/
 			if (check_builtin(argv, str) == -1)
 			{
 				command = argv[0];
