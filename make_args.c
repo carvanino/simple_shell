@@ -16,18 +16,17 @@ char **make_args(char *str)
 	if (!str)
 		return (NULL);
 	strcopy = _strdup(str);
-	if (strcopy && tokenize(strcopy, " "))
+	if (strcopy && tokenize(strcopy, " \n"))
 	{
 		len++;
-		while (tokenize(NULL, " "))
+		while (tokenize(NULL, " \n"))
 			len++;
 	}
-	len++; /* New edit */
 	free(strcopy);
 
 	if (len > 0)
 	{
-		splitted = malloc(sizeof(char *) * len);/* removed "+1" here */
+		splitted = malloc(sizeof(char *) * (len + 1));/* removed "+1" here */
 
 		if (splitted)
 		{

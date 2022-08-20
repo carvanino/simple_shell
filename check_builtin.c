@@ -16,6 +16,8 @@ int check_builtin(char **args, char *str)
 			{NULL, NULL}
 	};
 	int i;
+	if (args == NULL)
+		return (-1);
 
 	for (i = 1; commands[i].name; i++)
 	{

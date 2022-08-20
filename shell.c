@@ -32,7 +32,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 			if (str[0] != '\n')
 			{
 				argv = make_args(str);
-				if (check_builtin(argv, str) == -1)
+				if (argv != NULL && check_builtin(argv, str) == -1)
 				{
 					command = argv[0];
 					check = check_path(&command);
