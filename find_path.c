@@ -69,13 +69,13 @@ int check_path(char **args)
 
 	delim = ":";
 	path = _strdup(getenv("PATH"));
-	if (!path)
-		exit(5);
 	if (stat(*args, &st) == 0)
 	{
 		free(path);
 		return (0);
 	}
+	if (!path)
+		return (1);
 	dir = strtok(path, delim);
 	while (dir != NULL)
 	{
