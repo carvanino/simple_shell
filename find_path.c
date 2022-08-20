@@ -68,12 +68,12 @@ int check_path(char **args)
 	struct stat st;
 
 	delim = ":";
-	path = _strdup(getenv("PATH"));
 	if (stat(*args, &st) == 0)
 	{
 		free(path);
 		return (0);
 	}
+	path = _strdup(getenv("PATH"));
 	if (!path)
 		return (1);
 	dir = strtok(path, delim);
