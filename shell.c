@@ -45,7 +45,7 @@ int main(int ac __attribute__((unused)), char **av __attribute__((unused)))
 						_puts("shell: ");
 						_puts(str);
 						_puts(": command not found\n");
-						free(argv); /*change to just free_args */
+						free(argv);
 					}
 				}
 				else
