@@ -128,9 +128,9 @@ void get_args(void)
 				}
 				else
 				{
-					_puts("shell: ");
-					_puts(str);
-					_puts(": command not found\n");
+					write(2, "shell: ", 7);
+					write(2, str, _strlen(str));
+					write(2, ": command not found\n", 20);
 					free(argv);/* changed to just free_args */
 				}
 			}
