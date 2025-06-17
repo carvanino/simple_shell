@@ -5,7 +5,7 @@
  *
  * @ptr: pointer to array of pointers
  *
- * Return: NOthing
+ * Return: Nothing
  */
 
 void free_args(char **ptr)
