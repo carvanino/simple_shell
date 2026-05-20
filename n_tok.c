@@ -3,7 +3,7 @@
 /**
  * n_toks - gets the number of token from a string
  *
- * @str: string ti be tokenized or parsed
+ * @str: string t0 be tokenized or parsed
  * @delim: delimiter
  *
  * Return: Number of tokens
